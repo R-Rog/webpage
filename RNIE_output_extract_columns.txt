@@ -1,0 +1,22 @@
+Risk-Based Interest Rate Expectations -- data extract (RNIE_output_extract.csv)
+
+Columns:
+Date        Observation date (YYYY-MM-DD)
+rnvar_*     Risk-neutral variance of the swap rate at the horizon (ppt^2)
+rnskew_*    Risk-neutral standardized skewness: rnthird / rnvar^1.5 (dimensionless)
+rnthird_*   Risk-neutral third central moment of the swap rate at the horizon (ppt^3)
+pvar_*      Forecast physical variance (HAR-type expanding-window regression on lagged realized variance) (ppt^2)
+rp_*        Interest-rate risk premium: forward rate minus expected rate (ppt)
+rp_*_ddiff  Estimated change in rp over the next trading day, (change in rnvar) / (rnthird/rnvar + 2 rp) (ppt)
+rp_*_wdiff  As rp_*_ddiff, over the next week (5 trading days) (ppt)
+rp_*_mdiff  As rp_*_ddiff, over the next month (21 trading days) (ppt)
+lambda_*    Exposure: rp / rnvar. For _y this is the effective exposure implied by the second-order annual specification. Multiply by 100 for duration units.
+
+Column suffixes:
+_q = one-quarter horizon (10y-in-1q)
+_y = one-year horizon (10y-in-1y).
+
+Underlying rate: 10-year USD swap rate. 
+Sample: the paper's sample, January 2002 to June 2023. The rp_*diff columns cover the paper's risk-premium change analysis, January 2007 to December 2018, and are blank outside it.
+Observation frequency: One row per date with risk-neutral moment data: weekly before 2007, daily after.
+Risk premia and exposures are out-of-sample (expanding-window) estimates.
